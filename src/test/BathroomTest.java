@@ -152,4 +152,85 @@ public class BathroomTest {
 
         assertThat(bathroom.determineOptimalUrinal(), equalTo(1));
     }
+
+    @Test
+    public void determineOptimalUrinal_WhenThereAreFourUrinalsAndOnlyTheThirdUrinalIsUnoccupied_ReturnsPositionThree() {
+        Bathroom bathroom = new Bathroom();
+
+        Urinal urinal = new Urinal();
+        urinal.setIsOccupied(true);
+        bathroom.add(urinal);
+
+        Urinal urinal2 = new Urinal();
+        urinal2.setIsOccupied(true);
+        bathroom.add(urinal2);
+
+        Urinal urinal3 = new Urinal();
+        urinal3.setIsOccupied(false);
+        bathroom.add(urinal3);
+
+        Urinal urinal4 = new Urinal();
+        urinal4.setIsOccupied(true);
+        bathroom.add(urinal4);
+
+        assertThat(bathroom.determineOptimalUrinal(), equalTo(3));
+    }
+
+    @Test
+    public void determineOptimalUrinal_WhenThereAreFiveUrinalsAndOnlyTheSecondAndFourthUrinalsAreUnoccupied_ReturnsPositionFour() {
+        Bathroom bathroom = new Bathroom();
+
+        Urinal urinal = new Urinal();
+        urinal.setIsOccupied(true);
+        bathroom.add(urinal);
+
+        Urinal urinal2 = new Urinal();
+        urinal2.setIsOccupied(false);
+        bathroom.add(urinal2);
+
+        Urinal urinal3 = new Urinal();
+        urinal3.setIsOccupied(true);
+        bathroom.add(urinal3);
+
+        Urinal urinal4 = new Urinal();
+        urinal4.setIsOccupied(false);
+        bathroom.add(urinal4);
+
+        Urinal urinal5 = new Urinal();
+        urinal5.setIsOccupied(true);
+        bathroom.add(urinal5);
+
+        assertThat(bathroom.determineOptimalUrinal(), equalTo(4));
+    }
+
+    @Test
+    public void determineOptimalUrinal_WhenThereAreSixUrinalsAndOnlyTheThirdAndFifthUrinalsAreUnoccupied_ReturnsPositionFive() {
+        Bathroom bathroom = new Bathroom();
+
+        Urinal urinal = new Urinal();
+        urinal.setIsOccupied(true);
+        bathroom.add(urinal);
+
+        Urinal urinal2 = new Urinal();
+        urinal2.setIsOccupied(true);
+        bathroom.add(urinal2);
+
+        Urinal urinal3 = new Urinal();
+        urinal3.setIsOccupied(false);
+        bathroom.add(urinal3);
+
+        Urinal urinal4 = new Urinal();
+        urinal4.setIsOccupied(true);
+        bathroom.add(urinal4);
+
+        Urinal urinal5 = new Urinal();
+        urinal5.setIsOccupied(false);
+        bathroom.add(urinal5);
+
+        Urinal urinal6 = new Urinal();
+        urinal6.setIsOccupied(true);
+        bathroom.add(urinal6);
+
+        assertThat(bathroom.determineOptimalUrinal(), equalTo(5));
+    }
 }
