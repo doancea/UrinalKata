@@ -12,7 +12,7 @@ public class Bathroom extends ArrayList<Urinal> {
         int positions = this.size();
 
         boolean isEvenNumberUrinals = (positions % 2 == 0);
-        int firstLoopMinimum = isEvenNumberUrinals ? 2 : 0;
+        int firstLoopMinimum = isEvenNumberUrinals ? 2 : 1;
 
 
         for(int position = positions; position > 0; position--) {
@@ -22,7 +22,7 @@ public class Bathroom extends ArrayList<Urinal> {
             if(position > 2) {
                 position--;
             } else if(position == firstLoopMinimum) {
-                if(isEvenNumberUrinals && !isUrinalOccupied(1)) {
+                if(isEvenNumberUrinals && !isUrinalOccupied(0)) {
                     return 1;
                 }
                 position = positions;
