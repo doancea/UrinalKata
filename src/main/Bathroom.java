@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by doancea on 3/18/15.
@@ -8,9 +9,10 @@ import java.util.ArrayList;
 public class Bathroom extends ArrayList<Urinal> {
 
     public int determineOptimalUrinal() {
-        for(Urinal urinal : this) {
-            if(!urinal.isOccupied()) {
-                return this.indexOf(urinal) + 1;
+        int positions = this.size();
+        for(int position = positions; positions > 0; positions--) {
+            if(!this.get(position -1).isOccupied()) {
+                return position;
             }
         }
         return 0;
