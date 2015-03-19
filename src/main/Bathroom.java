@@ -10,7 +10,7 @@ public class Bathroom extends ArrayList<Urinal> {
 
     public int determineOptimalUrinal() {
         int positions = this.size();
-        for(int position = positions; positions > 0; positions--) {
+        for(int position = positions; position > 0; position--) {
             if(!this.get(position -1).isOccupied()) {
                 return position;
             }
