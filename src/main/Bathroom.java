@@ -11,18 +11,29 @@ public class Bathroom extends ArrayList<Urinal> {
     public int determineOptimalUrinal() {
         int positions = this.size();
 
+        boolean isEvenNumberUrinals = (positions % 2 == 0);
+        int firstLoopMinimum = isEvenNumberUrinals ? 2 : 0;
+
+
         for(int position = positions; position > 0; position--) {
-            if(!this.get(position -1).isOccupied()) {
+            if(!isUrinalOccupied(position - 1)) {
                 return position;
             }
             if(position > 2) {
                 position--;
-            } else if(position == 1 + (positions % 2)) {
-                return 0;
-            } else {
+            } else if(position == firstLoopMinimum) {
+                if(isEvenNumberUrinals && !isUrinalOccupied(1)) {
+                    return 1;
+                }
                 position = positions;
+            } else {
+                return 0;
             }
         }
         return 0;
+    }
+
+    private boolean isUrinalOccupied(int index) {
+        return this.get(index).isOccupied();
     }
 }

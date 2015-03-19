@@ -129,4 +129,27 @@ public class BathroomTest {
         bathroom.add(urinal3);
         assertThat(bathroom.determineOptimalUrinal(), equalTo(2));
     }
+
+    @Test
+    public void determineOptimalUrinal_WhenThereAreFourUrinalsAndTheSecondAndFourthUrinalsAreOccupied_ReturnsPositionOne() {
+        Bathroom bathroom = new Bathroom();
+
+        Urinal urinal = new Urinal();
+        urinal.setIsOccupied(false);
+        bathroom.add(urinal);
+
+        Urinal urinal2 = new Urinal();
+        urinal2.setIsOccupied(true);
+        bathroom.add(urinal2);
+
+        Urinal urinal3 = new Urinal();
+        urinal3.setIsOccupied(false);
+        bathroom.add(urinal3);
+
+        Urinal urinal4 = new Urinal();
+        urinal4.setIsOccupied(true);
+        bathroom.add(urinal4);
+
+        assertThat(bathroom.determineOptimalUrinal(), equalTo(1));
+    }
 }
