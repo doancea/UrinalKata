@@ -14,6 +14,9 @@ public class Bathroom extends ArrayList<Urinal> {
             if(!this.get(position -1).isOccupied()) {
                 return position;
             }
+            if(position > 2) {
+                position--;
+            }
         }
         return 0;
     }
