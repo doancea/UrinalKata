@@ -17,6 +17,20 @@ public class Person {
             }
         }
 
+        ArrayList<Urinal> nonAdjacentUnavailableUrinals = new ArrayList<Urinal>();
+
+        for(Urinal urinal : availableUrinals) {
+            int index = urinals.indexOf(urinal);
+
+            if((index == urinals.size() - 1) || (urinals.get(index + 1).isAvailable())) {
+                nonAdjacentUnavailableUrinals.add(urinal);
+            }
+        }
+
+        if(!nonAdjacentUnavailableUrinals.isEmpty()) {
+            availableUrinals = nonAdjacentUnavailableUrinals;
+        }
+
         if(!availableUrinals.isEmpty()) {
             return availableUrinals.size() - 1;
         }

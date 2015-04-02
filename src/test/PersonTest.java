@@ -55,10 +55,23 @@ public class PersonTest {
     }
 
     @Test
-    public void chooseUrinal_whenThereAreTwoUrinalsAndOnlyTheFirstIsAvailable_ReturnsTheFirstUrinal() {
+    public void chooseUrinal_WhenThereAreTwoUrinalsAndOnlyTheFirstIsAvailable_ReturnsTheFirstUrinal() {
         Person person = new Person();
 
         ArrayList<Urinal> urinals = new ArrayList<Urinal>();
+        urinals.add(new Urinal(true));
+        urinals.add(new Urinal(false));
+
+        int urinalPosition = person.chooseUrinal(urinals);
+        assertThat(urinalPosition, equalTo(0));
+    }
+
+    @Test
+    public void chooseUrinal_WhenThereAreThreeUrinalsAndTheFurthestIsNotAvailable_ReuturnsTheFirstUrinal() {
+        Person person = new Person();
+
+        ArrayList<Urinal> urinals = new ArrayList<Urinal>();
+        urinals.add(new Urinal(true));
         urinals.add(new Urinal(true));
         urinals.add(new Urinal(false));
 
