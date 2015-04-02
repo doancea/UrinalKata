@@ -78,5 +78,4 @@ public class PersonTest {
         int urinalPosition = person.chooseUrinal(urinals);
         assertThat(urinalPosition, equalTo(0));
     }
-
 }

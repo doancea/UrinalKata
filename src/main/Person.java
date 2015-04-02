@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by doancea on 4/1/15.
@@ -18,11 +19,16 @@ public class Person {
             availableUrinals = nonAdjacentUnavailableUrinals;
         }
 
+        int highestIndex = -1;
+
         if(!availableUrinals.isEmpty()) {
-            return availableUrinals.size() - 1;
+            for(Integer index : availableUrinals.keySet()) {
+                highestIndex = index > highestIndex ? index : highestIndex;
+            }
+
         }
 
-        return -1;
+        return highestIndex;
     }
 
     private HashMap<Integer, Urinal> getUrinalsWithAvailableNeighbor(ArrayList<Urinal> urinals, HashMap<Integer, Urinal> availableUrinals) {
