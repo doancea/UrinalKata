@@ -20,5 +20,14 @@ public class PersonTest {
         assertThat(urinalPosition, equalTo(-1));
     }
 
+    @Test
+    public void chooseUrinal_whenThereIsOneUrinal_ReturnsTheUrinal() {
+        Person person = new Person();
 
+        ArrayList<Urinal> urinals = new ArrayList<Urinal>();
+        urinals.add(new Urinal());
+
+        int urinalPosition = person.chooseUrinal(urinals);
+        assertThat(urinalPosition, equalTo(0));
+    }
 }
