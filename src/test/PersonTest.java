@@ -85,7 +85,38 @@ public class PersonTest {
 
         ArrayList<Urinal> urinals = new ArrayList<Urinal>();
         urinals.add(new Urinal(true));
+        urinals.add(new Urinal(false));
         urinals.add(new Urinal(true));
+        urinals.add(new Urinal(false));
+
+        int urinalPosition = person.chooseUrinal(urinals);
+        assertThat(urinalPosition, equalTo(0));
+    }
+
+    @Test
+    public void chooseUrinal_WhenThereAreFiveUrinalsAndTheFourthAndSecondAreOccupied_ReturnsTheFifthUrinal() {
+        Person person = new Person();
+
+        ArrayList<Urinal> urinals = new ArrayList<Urinal>();
+        urinals.add(new Urinal(true));
+        urinals.add(new Urinal(false));
+        urinals.add(new Urinal(true));
+        urinals.add(new Urinal(false));
+        urinals.add(new Urinal(true));
+
+        int urinalPosition = person.chooseUrinal(urinals);
+        assertThat(urinalPosition, equalTo(4));
+    }
+
+    @Test
+    public void chooseUrinal_WhenThereAreFiveUrinalsAndTheFirstAndThirdAreAvailable_ReturnsTheFirstUrinal() {
+        Person person = new Person();
+
+        ArrayList<Urinal> urinals = new ArrayList<Urinal>();
+        urinals.add(new Urinal(true));
+        urinals.add(new Urinal(false));
+        urinals.add(new Urinal(true));
+        urinals.add(new Urinal(false));
         urinals.add(new Urinal(false));
 
         int urinalPosition = person.chooseUrinal(urinals);

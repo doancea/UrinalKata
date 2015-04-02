@@ -3,7 +3,6 @@ package main;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by doancea on 4/1/15.
@@ -13,10 +12,16 @@ public class Person {
     public int chooseUrinal(ArrayList<Urinal> urinals) {
         HashMap<Integer, Urinal> availableUrinals = getAvailableUrinals(urinals);
 
-        HashMap<Integer, Urinal> nonAdjacentUnavailableUrinals = getUrinalsWithAvailableNeighbor(urinals, availableUrinals);
+        HashMap<Integer, Urinal> availableUrinalsWithBothNeighborsAvailable = getUrinalsWithBothNeighborsAvailable(urinals, availableUrinals);
 
-        if(!nonAdjacentUnavailableUrinals.isEmpty()) {
-            availableUrinals = nonAdjacentUnavailableUrinals;
+        if(!availableUrinalsWithBothNeighborsAvailable.isEmpty()) {
+            availableUrinals = availableUrinalsWithBothNeighborsAvailable;
+        } else {
+            HashMap<Integer, Urinal> availableUrinalsWithOneNeighborAvailable = getUrinalsWithOneNeighborAvailable(urinals, availableUrinals);
+
+            if(!availableUrinalsWithOneNeighborAvailable.isEmpty()) {
+                availableUrinals = availableUrinalsWithOneNeighborAvailable;
+            }
         }
 
         int highestIndex = -1;
@@ -30,13 +35,26 @@ public class Person {
         return highestIndex;
     }
 
-    private HashMap<Integer, Urinal> getUrinalsWithAvailableNeighbor(ArrayList<Urinal> urinals, HashMap<Integer, Urinal> availableUrinals) {
+    private HashMap<Integer, Urinal> getUrinalsWithBothNeighborsAvailable(ArrayList<Urinal> urinals, HashMap<Integer, Urinal> availableUrinals) {
         HashMap<Integer, Urinal> nonAdjacentUnavailableUrinals = new HashMap<Integer, Urinal>();
 
         for(Map.Entry<Integer, Urinal > urinalPosition : availableUrinals.entrySet()) {
             int index = urinalPosition.getKey();
 
             if(isFurtherNeighborAvailable(urinals, index) && isCloserNeighborAvailable(urinals, index)) {
+                nonAdjacentUnavailableUrinals.put(index, urinalPosition.getValue());
+            }
+        }
+        return nonAdjacentUnavailableUrinals;
+    }
+
+    private HashMap<Integer, Urinal> getUrinalsWithOneNeighborAvailable(ArrayList<Urinal> urinals, HashMap<Integer, Urinal> availableUrinals) {
+        HashMap<Integer, Urinal> nonAdjacentUnavailableUrinals = new HashMap<Integer, Urinal>();
+
+        for(Map.Entry<Integer, Urinal > urinalPosition : availableUrinals.entrySet()) {
+            int index = urinalPosition.getKey();
+
+            if(isFurtherNeighborAvailable(urinals, index) || isCloserNeighborAvailable(urinals, index)) {
                 nonAdjacentUnavailableUrinals.put(index, urinalPosition.getValue());
             }
         }
