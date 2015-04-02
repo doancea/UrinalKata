@@ -53,4 +53,17 @@ public class PersonTest {
         int urinalPosition = person.chooseUrinal(urinals);
         assertThat(urinalPosition, equalTo(1));
     }
+
+    @Test
+    public void chooseUrinal_whenThereAreTwoUrinalsAndOnlyTheFirstIsAvailable_ReturnsTheFirstUrinal() {
+        Person person = new Person();
+
+        ArrayList<Urinal> urinals = new ArrayList<Urinal>();
+        urinals.add(new Urinal(true));
+        urinals.add(new Urinal(false));
+
+        int urinalPosition = person.chooseUrinal(urinals);
+        assertThat(urinalPosition, equalTo(0));
+    }
+
 }
