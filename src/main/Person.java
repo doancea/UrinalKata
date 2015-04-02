@@ -8,8 +8,10 @@ import java.util.ArrayList;
 public class Person {
 
     public int chooseUrinal(ArrayList<Urinal> urinals) {
-        if(!urinals.isEmpty()) {
-            return 0;
+        for(Urinal urinal : urinals) {
+            if(!urinal.isOccupied()) {
+                return urinals.indexOf(urinal);
+            }
         }
 
         return -1;

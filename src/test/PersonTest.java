@@ -21,13 +21,24 @@ public class PersonTest {
     }
 
     @Test
-    public void chooseUrinal_whenThereIsOneUrinal_ReturnsTheUrinal() {
+    public void chooseUrinal_whenThereIsOneUrinalAndItIsNotOccupied_ReturnsTheUrinal() {
         Person person = new Person();
 
         ArrayList<Urinal> urinals = new ArrayList<Urinal>();
-        urinals.add(new Urinal());
+        urinals.add(new Urinal(false));
 
         int urinalPosition = person.chooseUrinal(urinals);
         assertThat(urinalPosition, equalTo(0));
+    }
+
+    @Test
+    public void chooseUrinal_whenThereIsOneUrinalAndItIsOccupied_ReturnsNoUrinal() {
+        Person person = new Person();
+
+        ArrayList<Urinal> urinals = new ArrayList<Urinal>();
+        urinals.add(new Urinal(true));
+
+        int urinalPosition = person.chooseUrinal(urinals);
+        assertThat(urinalPosition, equalTo(-1));
     }
 }
