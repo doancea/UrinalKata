@@ -67,7 +67,7 @@ public class PersonTest {
     }
 
     @Test
-    public void chooseUrinal_WhenThereAreThreeUrinalsAndTheFurthestIsNotAvailable_ReuturnsTheFirstUrinal() {
+    public void chooseUrinal_WhenThereAreThreeUrinalsAndTheFurthestIsNotAvailable_ReturnsTheFirstUrinal() {
         Person person = new Person();
 
         ArrayList<Urinal> urinals = new ArrayList<Urinal>();
