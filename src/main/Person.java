@@ -8,10 +8,16 @@ import java.util.ArrayList;
 public class Person {
 
     public int chooseUrinal(ArrayList<Urinal> urinals) {
+        ArrayList<Urinal> availableUrinals = new ArrayList<Urinal>();
+
         for(Urinal urinal : urinals) {
             if(urinal.isAvailable()) {
-                return urinals.indexOf(urinal);
+                availableUrinals.add(urinals.indexOf(urinal), urinal);
             }
+        }
+
+        if(!availableUrinals.isEmpty()) {
+            return availableUrinals.size() - 1;
         }
 
         return -1;
