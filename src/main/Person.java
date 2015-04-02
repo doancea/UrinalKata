@@ -24,14 +24,18 @@ public class Person {
             }
         }
 
-        int highestIndex = -1;
+        int highestIndex = selectFurthestUrinal(availableUrinals);
 
+        return highestIndex;
+    }
+
+    private int selectFurthestUrinal(HashMap<Integer, Urinal> availableUrinals) {
+        int highestIndex = -1;
         if(!availableUrinals.isEmpty()) {
             for(Integer index : availableUrinals.keySet()) {
                 highestIndex = index > highestIndex ? index : highestIndex;
             }
         }
-
         return highestIndex;
     }
 
