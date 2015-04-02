@@ -10,9 +10,10 @@ public class Person {
     public int chooseUrinal(ArrayList<Urinal> urinals) {
         ArrayList<Urinal> availableUrinals = new ArrayList<Urinal>();
 
-        for(Urinal urinal : urinals) {
+        for(int i = 0; i < urinals.size(); i++) {
+            Urinal urinal = urinals.get(i);
             if(urinal.isAvailable()) {
-                availableUrinals.add(urinals.indexOf(urinal), urinal);
+                availableUrinals.add(i, urinal);
             }
         }
 
