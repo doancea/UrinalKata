@@ -25,7 +25,6 @@ public class Person {
             for(Integer index : availableUrinals.keySet()) {
                 highestIndex = index > highestIndex ? index : highestIndex;
             }
-
         }
 
         return highestIndex;
@@ -37,15 +36,19 @@ public class Person {
         for(Map.Entry<Integer, Urinal > urinalPosition : availableUrinals.entrySet()) {
             int index = urinalPosition.getKey();
 
-            if(isFurtherNeighborOccupied(urinals, index)) {
+            if(isFurtherNeighborAvailable(urinals, index) && isCloserNeighborAvailable(urinals, index)) {
                 nonAdjacentUnavailableUrinals.put(index, urinalPosition.getValue());
             }
         }
         return nonAdjacentUnavailableUrinals;
     }
 
-    private boolean isFurtherNeighborOccupied(ArrayList<Urinal> urinals, int index) {
+    private boolean isFurtherNeighborAvailable(ArrayList<Urinal> urinals, int index) {
         return (index == urinals.size() - 1) || (urinals.get(index + 1).isAvailable());
+    }
+
+    private boolean isCloserNeighborAvailable(ArrayList<Urinal> urinals, int index) {
+        return (index == 0) || (urinals.get(index - 1).isAvailable());
     }
 
     private HashMap<Integer, Urinal> getAvailableUrinals(ArrayList<Urinal> urinals) {
