@@ -9,7 +9,7 @@ public class Person {
 
     public int chooseUrinal(ArrayList<Urinal> urinals) {
         for(Urinal urinal : urinals) {
-            if(!urinal.isOccupied()) {
+            if(urinal.isAvailable()) {
                 return urinals.indexOf(urinal);
             }
         }

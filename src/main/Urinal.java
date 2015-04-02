@@ -5,13 +5,13 @@ package main;
  */
 public class Urinal {
 
-    private boolean occupied;
+    private boolean available;
 
-    public Urinal(boolean occupied) {
-        this.occupied = occupied;
+    public Urinal(boolean available) {
+        this.available = available;
     }
 
-    public boolean isOccupied() {
-        return occupied;
+    public boolean isAvailable() {
+        return available;
     }
 }
